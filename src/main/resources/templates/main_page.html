@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{title.home}"></title>
+	<link rel="stylesheet" href="/resources/css/main_page.css">
+    <link rel="stylesheet" href="/resources/css/header.css">
+    <script>
+        const todayId = [[${todayId}]]
+        const loggedIn = [[${loggedIn}]]
+    </script>
+</head>
+
+<body>
+
+    <header th:insert="~{header :: .header}"></header>
+
+    <div class="control-panel">
+        <label th:if="${loggedIn} and !${admin}" class="checkbox-container">
+            <input type="checkbox" class="filter" value="true" onchange="filter()" th:text="#{checkbox.text}"/>
+        </label>
+
+        <div class="days-pagination">
+            <a class="button" th:each="day:${days}" th:text="#{${day.name}}" th:href="'/home?day=' + ${day.id}" state="1"></a>
+        </div>
+
+        <label th:if="${loggedIn}" th:text="#{label.sorting}" class="sortingLabel"></label>
+        <label th:if="${loggedIn}">
+            <select class="field" onchange="sorting(this)">
+                <option th:each="option:${sortingOptions}" th:text="#{${option.name().toLowerCase()}}" th:value="${option.value}"></option>
+            </select>
+        </label>
+    </div>
+
+    <div class="d-table">
+        <div th:if="${sessions.isEmpty()}" th:text="#{message.emptySchedule}" class="message"></div>
+
+        <div class="d-tr" th:each="row:${sessions}">
+            <div class="d-td" th:each="filmSession:${row}">
+                <div class="card">
+                    <a th:if="${loggedIn}" th:href="'/home?day=' + ${filmSession.day.id} + '&film=' + ${filmSession.film.id}"
+                       th:title="#{message.showOnly} + ' &quot' + ${filmSession.film.title} + '&quot' ">
+                        <img th:src="'/resources' + ${filmSession.film.imagePath}">
+                    </a>
+                    <a th:if="!${loggedIn}">
+                        <img th:src="'/resources' + ${filmSession.film.imagePath}">
+                    </a>
+                    <span th:if="!${loggedIn}" th:text="${filmSession.film.title}" class="title"></span>
+                    <a th:if="${loggedIn}" th:text="${filmSession.film.title}" class="title"
+                       th:href="'/tickets/' + ${filmSession.id}" th:title="#{message.buy}"></a>
+                    <span th:text="${#dates.format(filmSession.startTime, 'HH:mm')}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/resources/js/main_page.js"></script>
+</body>
+
+</html>

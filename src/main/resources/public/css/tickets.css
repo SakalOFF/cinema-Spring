@@ -1,0 +1,51 @@
+.container{
+    display: block;
+    margin-left: 20%;
+    margin-top: 2%;
+}
+
+.buttonContainer{
+    display: block;
+    vertical-align: middle;
+}
+
+.seatsSchema{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+.row{
+    padding: 10px;
+    display:table-row;
+}
+
+.row > *{
+    display: table-cell;
+    padding: 3px 3px 30px 30px;
+}
+
+.seat{
+    background: #FFD967;
+    cursor: pointer;
+}
+.seat[state="3"]{
+    background: #dddddd;
+    cursor: default;
+}
+
+.buyButton{
+    background: red;
+    color: #eeeeee;
+    padding: 25px;
+    font-size: 25px;
+    margin-left: 75px;
+    cursor: pointer;
+}
+
+.screen{
+    display: block;
+    background: #ccc;
+    padding: 7px;
+    text-align: center;
+}

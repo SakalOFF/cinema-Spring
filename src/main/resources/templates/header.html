@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <div class="header">
+        <a href="/home" class="logo">KinOFF</a>
+        <form th:if="${loggedIn}" th:action="@{/logout}" method="post" class="logout_form">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <a type="submit" class="red_button" th:text="#{button.logout}" onclick="document.querySelector('.logout_form').submit();"></a>
+        </form>
+        <a href="/login" class="red_button" th:if="${registration} or (${loggedIn} != null and !${loggedIn})" th:text="#{button.login}"></a>
+        <a href="/registration" class="red_button" th:if="${logIn}" th:text="#{button.register}"></a>
+        <a th:if="${admin}" href="/redactor" class="red_button redactor" th:text="#{button.redactor}"></a>
+        <select class="locale" onchange="changeLocale(this.options[this.selectedIndex])">
+            <option th:text="#{lang.english}" value="en"></option>
+            <option th:text="#{lang.ukrainian}" value="ukr"></option>
+        </select>
+        <a th:if="${admin}" class="adminLabel">admin</a>
+        <script>
+            const currentLocale = '[[${#locale.language}]]'
+        </script>
+        <script src="/resources/js/header.js"></script>
+    </div>
+
+</body>
+</html>

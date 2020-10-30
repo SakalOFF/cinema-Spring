@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" th:content="${_csrf.token}">
+    <title th:text="#{title.purchase}"></title>
+    <link rel="stylesheet" href="/resources/css/header.css">
+    <link rel="stylesheet" href="/resources/css/tickets.css">
+    <script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        const seatsInARow = [[${seatsInARow}]]
+        const bookedSeats = [[${bookedSeats}]]
+        const admin = [[${admin}]]
+        const filmSessionId = [[${filmSession.id}]]
+    </script>
+</head>
+<body>
+
+    <header th:insert="~{header :: .header}"></header>
+
+    <div class="container">
+        <div class="row">
+            <div class="seatsSchema">
+                <a class="screen" th:text="#{screen}"></a>
+                <div th:each="i: ${#numbers.sequence(1, __${rowsQuantity}__)}" class="row" th:id="${i}">
+                    <div class="row-number">
+                        <span th:text="${i}"></span>
+                    </div>
+                    <a th:each="j: ${#numbers.sequence(1, __${seatsInARow}__)}" class="seat" onclick="chooseSeat(this)" state="1" th:text="${j}" th:id="${i} + '-' + ${j}"></a>
+                </div>
+            </div>
+            <div th:if="!${admin}" class="buttonContainer">
+                <a class="buyButton" onclick="buyTickets()" th:text="#{button.purchase}"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/resources/js/tickets.js"></script>
+</body>
+</html>

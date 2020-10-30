@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Додати сеанс</title>
+    <link rel="stylesheet" href="/resources/css/header.css">
+    <link rel="stylesheet" href="/resources/css/login.css">
+</head>
+<body>
+
+    <header th:insert="~{header :: .header}"></header>
+
+    <div th:if="${showMessage}">
+        <div class="message">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+    <form method="post" class="my_form">
+        <div class="group">
+            <label>
+                День:
+                <select name="dayId">
+                    <option th:each="day: ${days}" th:value="${day.id}" th:text="${day.name}">
+                </select>
+            </label>
+        </div>
+        <div class="group">
+            <label>
+                Фільм:
+                <select name="filmId">
+                    <option th:each="film: ${films}" th:value="${film.id}" th:text="${film.title}">
+                </select>
+            </label>
+        </div>
+        <div class="group">
+            <label>
+                Час початку:
+                <input name="startTime">
+            </label>
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <div class="group">
+            <div style="text-align: center;"><input class="button" type="submit" th:value="#{button.addSession}"/></div>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+	<meta charset="UTF-8">
+	<title th:text="#{title.login}"></title>
+	<link rel="stylesheet" href="/resources/css/login.css">
+    <link rel="stylesheet" href="/resources/css/header.css">
+</head>
+
+<body>
+
+    <header th:insert="~{header :: .header}"></header>
+
+    <div >
+        <div th:if="${invalidData}" class="message">
+            <p th:text="#{message.error.invalidData}"></p>
+        </div>
+    </div>
+    <form th:action="@{/login}" method="post" class="my_form">
+        <div class="group">
+            <label th:text="#{login} + ':'"></label>
+            <label>
+                <input type="text" name="username">
+            </label>
+        </div>
+        <div class="group">
+            <label th:text="#{password} + ':'"></label>
+            <label>
+                <input type="password" name="password">
+            </label>
+        </div>
+        <div class="group">
+            <div style="text-align: center;"><input class="button" type="submit" th:value="#{button.login}"/></div>
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    </form>
+</body>
+
+</html>

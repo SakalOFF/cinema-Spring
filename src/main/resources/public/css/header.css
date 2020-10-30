@@ -1,0 +1,52 @@
+.red_button{
+    text-decoration: none;
+    color: white;
+    background-color: #e50914;
+    padding: 7px 17px;
+    border-radius: 3px;
+    float: right;
+    cursor: pointer;
+    margin-right: 3.5rem;
+    margin-top: 12px;
+}
+
+.header > *{
+    float: right;
+}
+
+.locale{
+    margin-top: 19px;
+    margin-right: 19px;
+}
+
+.header{
+    background-color: #200101;
+    height: 55px;
+    font-family: "Helvetica";
+}
+
+.redactor{
+    margin-right: 14px;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.logo{
+    float: none;
+    color: #e50914;
+    font-size: 50px;
+    margin-left: 10rem;
+    text-decoration: none;
+}
+
+.adminLabel{
+    color: #e50914;
+    float: right;
+    padding: 7px 17px;
+    margin-top: 12px;
+    cursor: default;
+}

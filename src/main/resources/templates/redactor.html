@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{title.redactor}"></title>
+    <link rel="stylesheet" href="/resources/css/redactor.css">
+    <link rel="stylesheet" href="/resources/css/header.css">
+    <script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        const todayId = [[${todayId}]]
+    </script>
+</head>
+<body>
+
+    <header th:insert="~{header :: .header}"></header>
+
+    <div class="control-panel">
+        <div class="days-pagination">
+            <a th:each="day:${days}" th:text="#{${day.name}}" th:href="'/redactor?day=' + ${day.id}" state="1"></a>
+        </div>
+    </div>
+    <div class="d-table">
+        <div class="d-tr" th:each="row:${sessions}">
+            <div class="d-td" th:each="filmSession:${row}">
+                <div th:if="${filmSession} != null" class="card closeable" th:sessionId="${filmSession.id}">
+                    <div class="close" onclick="deleteSession(this.parentElement.getAttribute('sessionId'))"></div>
+                    <a>
+                        <img th:src="${filmSession.film.imagePath}" alt="">
+                    </a>
+                    <span th:text="${filmSession.film.title}" class="title"></span>
+                    <span th:text="${#dates.format(filmSession.startTime, 'HH:mm')}"></span>
+                </div>
+                <div th:if="${filmSession} == null" class="card buttonContainer" onclick="document.location.href = '/redactor/sessions'">
+                    <div class="addButton" th:text="#{button.addSession}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/resources/js/redactor.js"></script>
+</body>
+</html>

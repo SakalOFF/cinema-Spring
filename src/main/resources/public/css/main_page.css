@@ -1,0 +1,87 @@
+body{
+    background: #e7581f;
+}
+
+.d-table{
+    margin: 20px 16.5%;
+    font-size: 18px;
+    background: #eee;
+}
+.d-td{
+    display: table-cell;
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.d-td *{
+    display: block;
+    margin: 20px;
+}
+
+img{
+    width: 183px;
+    height: 275px;
+    border: 1px solid #ccc;
+}
+
+.control-panel{
+    width: 100%;
+    margin-top: 30px;
+    height: 30px;
+}
+
+.control-panel > *{
+    float: left;
+}
+
+.control-panel *{
+    font-size: 18px;
+    font-family: "Helvetica";
+}
+
+.sortingLabel{
+    margin: 2px 10px 0 3%;
+    font-size: 18px;
+}
+
+.days-pagination{
+    margin-left: 4%;
+}
+
+.button{
+    background: #27a4e5;
+    font-size: 20px;
+    color: black;
+    padding: 6px 6px;
+    margin-left: 20px;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.days-pagination > *[state="2"]{
+    border: 3px solid #cccccc;
+}
+
+
+
+.title{
+    color: #023f88;
+    font-weight: 550;
+    text-decoration: none;
+}
+
+.message{
+    text-align: center;
+    font-size: 25px;
+}
+
+a.title:hover{
+    text-shadow: #cccccc;
+}
+
+.checkbox-container{
+    margin-left: 17%;
+}

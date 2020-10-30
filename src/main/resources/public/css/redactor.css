@@ -1,0 +1,107 @@
+body{
+    background: #e7581f;
+}
+
+.d-table{
+    margin: 10px 19.9%;
+    font-size: 18px;
+    background: #eee;
+}
+.d-td{
+    display: table-cell;
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.d-td *{
+    display: block;
+    margin: 20px;
+}
+
+img{
+    width: 183px;
+    height: 275px;
+    border: 1px solid #ccc;
+}
+
+.title{
+    color: #023f88;
+    font-weight: 550;
+}
+
+.message{
+    text-align: center;
+    font-size: 25px;
+}
+
+.close {
+    position:absolute;
+    opacity:0;
+    right:0;
+    width:16px;
+    height:16px;
+    cursor:pointer;
+    z-index: 5;
+    -webkit-transition: opacity 150ms;
+    background: #efefef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAiElEQVR42r2RsQrDMAxEBRdl8SDcX8lQPGg1GBI6lvz/h7QyRRXV0qUULwfvwZ1tenw5PxToRPWMC52eA9+WDnlh3HFQ/xBQl86NFYJqeGflkiogrOvVlIFhqURFVho3x1moGAa3deMs+LS30CAhBN5nNxeT5hbJ1zwmji2k+aF6NENIPf/hs54f0sZFUVAMigAAAABJRU5ErkJggg==) no-repeat;
+    text-align:right;
+}
+.close:hover, .close:focus {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAqklEQVR4XqWRMQ6DMAxF/1Fyilyj2SmIBUG5QcTCyJA5Z8jGhlBPgRi4TmoDraVmKFJlWYrlp/g5QfwRlwEVNWVa4WzfH9jK6kCkEkBjwxOhLghheMWMELUAqqwQ4OCbnE4LJnhr5IYdqQt4DJQjhe9u4vBBmnxHHNzRFkDGjHDo0VuTAqy2vAG4NkvXXDHxbGsIGlj3e835VFNtdugma/Jk0eXq0lP//5svi4PtO01oFfYAAAAASUVORK5CYII=");
+}
+
+.card {
+    position: relative;
+    margin: 5px;
+    float:left;
+}
+.card:after {
+    content:'\A';
+    position:absolute;
+    width:100%; height:100%;
+    top:0; left:0;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.card:hover:after {
+    opacity:1;
+}
+
+.control-panel{
+    margin-top: 15px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.days-pagination{
+    margin-left: 32%;
+}
+
+.days-pagination *{
+    background: #27a4e5;
+    font-size: 20px;
+    color: black;
+    margin-right: 20px;
+    text-decoration: none;
+    padding: 6px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.days-pagination > *[state="2"]{
+    border: 3px solid #cccccc;
+}
+
+.buttonContainer{
+    width:265px;
+    height: 399px;
+    cursor: pointer;
+}
+
+.addButton{
+    margin: 180px 66px;
+}
