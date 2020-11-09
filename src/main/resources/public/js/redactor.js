@@ -12,6 +12,9 @@ function deleteSession(sessionId){
     $.ajax({
         url: "/redactor/sessions",
         method: "delete",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: {
             sessionId
         }

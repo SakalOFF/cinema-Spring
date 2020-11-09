@@ -6,6 +6,8 @@ import com.company.cinema.services.SessionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,9 +52,13 @@ public class RedactorController {
     }
 
     @GetMapping("/sessions")
-    public String sessionForm(Model model){
+    public String sessionForm(Model model, @RequestParam(required = false) Boolean error){
         model.addAttribute("loggedIn", true);
         model.addAttribute("admin", true);
+
+        if(error != null){
+            model.addAttribute("showMessage", true);
+        }
 
         model.addAttribute("days", Days.values());
         model.addAttribute("films", filmsService.getAllFilms());
@@ -60,17 +66,20 @@ public class RedactorController {
     }
 
     @DeleteMapping("/sessions")
-    public String deleteSession(@RequestParam Long sessionId){
+    public ResponseEntity<String> deleteSession(@RequestParam Long sessionId){
         sessionsService.removeSession(sessionId);
-        return "redirect:/redactor";
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @PostMapping("/sessions")
     public String putSession(@RequestParam Long filmId,
                              @RequestParam Long dayId,
                              @Temporal(TemporalType.TIME) @DateTimeFormat(pattern = "HH:mm") @RequestParam Date startTime){
-        sessionsService.addSession(filmId, dayId, startTime);
-        return "redirect:/redactor";
+
+        if (sessionsService.addSession(filmId, dayId, startTime) != 0){
+            return "redirect:/redactor?day=" + dayId;
+        }
+        return "redirect:/redactor/sessions?error=true";
     }
 
 }

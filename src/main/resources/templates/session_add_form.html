@@ -2,7 +2,7 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Додати сеанс</title>
+    <title th:text="#{button.addSession}"></title>
     <link rel="stylesheet" href="/resources/css/header.css">
     <link rel="stylesheet" href="/resources/css/login.css">
 </head>
@@ -12,29 +12,29 @@
 
     <div th:if="${showMessage}">
         <div class="message">
-            <p th:text="${message}"></p>
+            <p th:text="#{message.error.addingSession}"></p>
         </div>
     </div>
     <form method="post" class="my_form">
         <div class="group">
-            <label>
-                День:
+            <label th:text="#{day} + ':'"></label>
+            <label >
                 <select name="dayId">
                     <option th:each="day: ${days}" th:value="${day.id}" th:text="${day.name}">
                 </select>
             </label>
         </div>
         <div class="group">
+            <label th:text="#{film} + ':'"></label>
             <label>
-                Фільм:
                 <select name="filmId">
                     <option th:each="film: ${films}" th:value="${film.id}" th:text="${film.title}">
                 </select>
             </label>
         </div>
         <div class="group">
+            <label th:text="#{start_time} + ':'"></label>
             <label>
-                Час початку:
                 <input name="startTime">
             </label>
         </div>

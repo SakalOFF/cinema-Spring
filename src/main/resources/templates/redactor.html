@@ -2,6 +2,7 @@
 <html lang="ua" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" th:content="${_csrf.token}">
     <title th:text="#{title.redactor}"></title>
     <link rel="stylesheet" href="/resources/css/redactor.css">
     <link rel="stylesheet" href="/resources/css/header.css">
