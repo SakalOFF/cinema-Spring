@@ -4,6 +4,8 @@ import com.company.cinema.entity.User;
 import com.company.cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,9 +61,12 @@ public class LogInAndRegisterController {
             return "registration_page";
         }
 
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         User savedUser = userService.saveNewUser(user);
         if(savedUser != null) {
-            return "redirect:/home";
+            return "redirect:/login";
         }
 
         model.addAttribute("userExists", true);
