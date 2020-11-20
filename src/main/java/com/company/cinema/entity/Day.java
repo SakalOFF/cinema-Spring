@@ -21,5 +21,4 @@ public class Day {
 
     @OneToMany(mappedBy = "day")
     private List<Session> sessions;
-
 }
